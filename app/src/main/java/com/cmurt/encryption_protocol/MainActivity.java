@@ -5,9 +5,14 @@ import android.os.Bundle;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+<<<<<<< HEAD
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
+=======
+import java.util.Date;
+import java.util.Locale;
+>>>>>>> origin/master
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         Random rand = new Random();
 
         int randomNum = rand.nextInt(99) + 1;
@@ -29,5 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         int Rnum = date * randomNum;
         System.out.println(Rnum);
+=======
+        // Gets the Date and Time
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss",Locale.getDefault());
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+>>>>>>> origin/master
     }
 }
