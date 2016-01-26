@@ -1,21 +1,24 @@
 package com.cmurt.encryption_protocol;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by cmurt on 1/26/2016.
+ */
+public class TimeAndDateUtil {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    /**
+     * @return the Date and Time,
+     * as well as the pseudo-random number generated.
+     * as a String
+     */
 
+    // Main method of the class
+    public String Main() {
         Random rand = new Random();
 
         int randomNum = rand.nextInt(99) + 1;
@@ -29,5 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         int Rnum = date * randomNum;
         System.out.println(Rnum);
+
+        String returnable = Rnum + ":-:" + Date;
+
+        return returnable;
     }
 }
