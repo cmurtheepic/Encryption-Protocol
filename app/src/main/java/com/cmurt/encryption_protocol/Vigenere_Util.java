@@ -1,5 +1,9 @@
 package com.cmurt.encryption_protocol;
 
+import android.util.Log;
+
+import java.util.Arrays;
+
 /**
  * Created by cmurt on 1/26/2016.
  */
@@ -12,9 +16,9 @@ public class Vigenere_Util {
      * @Alphabet is an Array consisting of a temporary alphabet to generate
      * the Viginere Array
      */
-    private String[][] Viginere = new String[26][26]; // Declares the Viginere array
+    private String[][] Viginere = new String[27][27]; // Declares the Viginere array
 
-    private String[] Alphabet = new String[26]; // Declares the Alphabet array
+    private String[] Alphabet = new String[27]; // Declares the Alphabet array
 
     // populates the Alphabet array
     private void populateAlphabetArray() {
@@ -48,13 +52,22 @@ public class Vigenere_Util {
 
     // populates the Viginere Array
     private void populateViginereArray() {
-        for(int a=1; a<= 26; a++){
-
+        for (int b = 1; b <= 26; b++) {
+            char letter = Alphabet[1].charAt(0);
+            for (int a = 2; a <= 26; a++) {
+                Alphabet[a-1] = Alphabet[a];
+                Viginere[b][a] = Alphabet[a];
+            }
+            Alphabet[26] = String.valueOf(letter);
+            Viginere[b][26] = Alphabet[26];
+            Log.d("this is Alphabet Array", "Alphabet :-: " + Arrays.toString(Alphabet));
         }
+        Log.d("this is Viginere Array", "Viginere :-: " + Arrays.deepToString(Viginere));
     }
 
-    public String Main(final String InputStream) {
-
+    public String Main() {
+        populateAlphabetArray();
+        populateViginereArray();
         return null;
     }
 }
