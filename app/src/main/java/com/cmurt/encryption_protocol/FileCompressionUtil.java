@@ -1,8 +1,5 @@
 package com.cmurt.encryption_protocol;
 
-/**
- * Created by cmurt on 1/26/2016.
- */
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -149,7 +146,8 @@ public class FileCompressionUtil {
 
         try {
 
-            ZipEntry entry = null;
+            // ZipEntry entry = null;
+            ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 int count;
                 byte[] data = new byte[BUFFER];

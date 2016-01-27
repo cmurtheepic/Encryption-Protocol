@@ -6,9 +6,6 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-/**
- * Created by cmurt on 1/26/2016.
- */
 public class TimeAndDateUtil {
 
     /**
@@ -33,8 +30,6 @@ public class TimeAndDateUtil {
         int Rnum = date * randomNum;
         System.out.println(Rnum);
 
-        String returnable = Rnum + ":-:" + Date;
-
-        return returnable;
+        return Rnum + ":-:" + Date;
     }
 }
