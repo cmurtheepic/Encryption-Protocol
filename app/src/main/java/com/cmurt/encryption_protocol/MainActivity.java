@@ -8,7 +8,7 @@ import com.cmurt.encryption_protocol.activities.UserSelectEncodeType;
 
 public class MainActivity extends AppCompatActivity {
 
-    RanGen_Util TADU = new RanGen_Util();
+    private final RanGen_Util TADU = new RanGen_Util();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

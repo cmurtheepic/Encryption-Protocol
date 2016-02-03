@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Please enter the text that you wish to encode"
+        android:text="@string/Please_enter_the_text_that_you_wish_to_encode"
         android:id="@+id/textView1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -24,7 +24,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="continue"
+        android:text="@string/Continue"
         android:onClick="Viginere"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"

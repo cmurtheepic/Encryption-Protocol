@@ -18,10 +18,10 @@ import java.util.zip.ZipOutputStream;
 /**
  * The Class FileCompressionUtil.
  */
-public class FileCompressionUtil {
+class FileCompressionUtil {
 
     private static final String PATH_SEP = "\\";
-    public static final int BUFFER = 2048;
+    private static final int BUFFER = 2048;
     private FileCompressionUtil() {}
 
     /**
@@ -31,14 +31,14 @@ public class FileCompressionUtil {
      * @param filePath the file path
      * @throws IOException Signals that an I/O exception has occurred.
      */
+    @SuppressWarnings("unused")
     public static void zipFilesInPath(final String zipFileName, final String filePath) throws IOException {
         final FileOutputStream dest = new FileOutputStream(zipFileName);
-        final ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
-        try {
+        try (ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest))) {
 
             byte[] data = new byte[BUFFER];
             final File folder = new File(filePath);
-            final List< String > files = Arrays.asList(folder.list());
+            final List<String> files = Arrays.asList(folder.list());
             for (String file : files) {
                 final FileInputStream fi = new FileInputStream(filePath + PATH_SEP + file);
                 final BufferedInputStream origin = new BufferedInputStream(fi, BUFFER);
@@ -51,7 +51,6 @@ public class FileCompressionUtil {
                 fi.close();
             }
         } finally {
-            out.close();
             dest.close();
         }
     }
@@ -64,15 +63,15 @@ public class FileCompressionUtil {
      * @return the checksum
      * @throws IOException Signals that an I/O exception has occurred.
      */
+    @SuppressWarnings("unused")
     public static long zipFilesInPathWithChecksum(final String zipFileName, final String folderPath) throws IOException {
 
         final FileOutputStream dest = new FileOutputStream(zipFileName);
         final CheckedOutputStream checkStream = new CheckedOutputStream(dest, new CRC32());
-        final ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(checkStream));
-        try {
+        try (ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(checkStream))) {
             byte[] data = new byte[BUFFER];
             final File folder = new File(folderPath);
-            final List< String > files = Arrays.asList(folder.list());
+            final List<String> files = Arrays.asList(folder.list());
             for (String file : files) {
                 final FileInputStream fi = new FileInputStream(folderPath + PATH_SEP + file);
                 final BufferedInputStream origin = new BufferedInputStream(fi, BUFFER);
@@ -85,7 +84,6 @@ public class FileCompressionUtil {
             }
 
         } finally {
-            out.close();
             checkStream.close();
             dest.flush();
             dest.close();
@@ -102,11 +100,11 @@ public class FileCompressionUtil {
      * @param fileExtractPath the file extract path
      * @throws IOException Signals that an I/O exception has occurred.
      */
+    @SuppressWarnings("unused")
     public static void unzipFilesToPath(final String zipFileName, final String fileExtractPath) throws IOException {
 
         final FileInputStream fis = new FileInputStream(zipFileName);
-        final ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
-        try {
+        try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis))) {
             ZipEntry entry;
 
             while ((entry = zis.getNextEntry()) != null) {
@@ -122,7 +120,7 @@ public class FileCompressionUtil {
             }
         } finally {
             fis.close();
-            zis.close();
+
         }
 
     }
@@ -137,14 +135,14 @@ public class FileCompressionUtil {
      * @return true, if checksum matches;
      * @throws IOException Signals that an I/O exception has occurred.
      */
+    @SuppressWarnings("unused")
     public static boolean unzipFilesToPathWithChecksum(final String zipFileName, final String fileExtractPath, final long checksum) throws IOException {
 
         boolean checksumMatches = false;
         final FileInputStream fis = new FileInputStream(zipFileName);
         final CheckedInputStream checkStream = new CheckedInputStream(fis, new CRC32());
-        final ZipInputStream zis = new ZipInputStream(new BufferedInputStream(checkStream));
 
-        try {
+        try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(checkStream))) {
 
             // ZipEntry entry = null;
             ZipEntry entry;
@@ -161,7 +159,6 @@ public class FileCompressionUtil {
             }
 
         } finally {
-            zis.close();
             fis.close();
             checkStream.close();
         }

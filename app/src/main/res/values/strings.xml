@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Encryption-Protocol</string>
+    <string name="Please_enter_the_text_that_you_wish_to_encode">Please enter the text that you wish to encode</string>
+    <string name="Please_select_the_type_you_wish_to_encode">Please select the type you wish to encode</string>
+    <string name="Original_Text">Original Text</string>
+    <string name="Continue">Continue</string>
+    <string name="Text">Text</string>
+    <string name="Key">Key</string>
+    <string name="File">File</string>
+    <string name="Encrypted_Text">Encrypted Text</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

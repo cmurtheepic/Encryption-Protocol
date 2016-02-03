@@ -12,15 +12,10 @@ import com.cmurt.encryption_protocol.Viginere_Util;
 
 public class Text extends AppCompatActivity {
 
-    Viginere_Util V_U = new Viginere_Util();
+    private final Viginere_Util V_U = new Viginere_Util();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text);
-    }
-
-    public void Viginere(View view) {
+    @SuppressWarnings("unused")
+    public void Viginere(View view) { // method is called when user clicks the 'Continue' button
         String Text;
         EditText ET;
 
@@ -28,7 +23,7 @@ public class Text extends AppCompatActivity {
         Text = ET.getText().toString();
         Log.d("text class:", "Text value: " + Text);
 
-        String[] strings = new String[3]; // declares the array 'strings'
+        String[] strings; // declares the array 'strings'
 
         strings = (V_U.Main(Text));
 
@@ -41,5 +36,11 @@ public class Text extends AppCompatActivity {
         bundle.putString("OutputStream", strings[1]);
         T_U.putExtras(bundle);
         startActivity(T_U);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_text);
     }
 }

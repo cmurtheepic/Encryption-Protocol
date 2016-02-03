@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Original Text"
+            android:text="@string/Original_Text"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Key"
+            android:text="@string/Key"
             android:id="@+id/Key"
             android:layout_gravity="center_horizontal" />
 
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Encrypted Text"
+            android:text="@string/Encrypted_Text"
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal" />
 

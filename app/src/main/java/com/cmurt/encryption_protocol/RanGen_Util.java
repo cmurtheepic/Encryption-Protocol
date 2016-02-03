@@ -10,21 +10,19 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class RanGen_Util { //declares the public class 'RanGen_Util'
+class RanGen_Util { //declares the public class 'RanGen_Util'
 
     // below are the declarations for most of the variables in this java class
     private long Prandom;
 
-    String LN;
+    private String LN;
 
-    int k = 1;
-    int g = 1;
+    private int g = 1;
 
-    boolean wt = true;
-    boolean done = false;
-    boolean singleDigit;
+    private boolean wt = true;
+    private boolean done = false;
 
-    Random RN = new Random();
+    private final Random RN = new Random();
     // above are the declarations for most of the variables in this java class
 
     /**
@@ -46,7 +44,7 @@ public class RanGen_Util { //declares the public class 'RanGen_Util'
 //            int hour = calendar.get(Calendar.HOUR);
 //            int minute = calendar.get(Calendar.MINUTE);
 //            int second = calendar.get(Calendar.SECOND);
-//            int milisecond = calendar.get(Calendar.MILLISECOND);
+//            int millisecond = calendar.get(Calendar.MILLISECOND);
 //            int nanosecond = calendar.get(Calendar.YEAR);
             System.out.println(dateFormat.format(calendar.getTime())); // gets the value of the current system time
                                                                        // and then prints it out to the system
@@ -78,6 +76,7 @@ public class RanGen_Util { //declares the public class 'RanGen_Util'
 
         // sets the Boolean 'done' to true, then calls back to the Main method
         done = true;
+        //noinspection ConstantConditions
         Log.d("boolean done:", "value of bool 'done': " + done);
         Main();
     }
@@ -91,7 +90,7 @@ public class RanGen_Util { //declares the public class 'RanGen_Util'
         }
 
         // resets the value of Integer 'k' back to 1
-        k = 1;
+        int k = 1;
 
         // logs the value of Long Prandom to logcat under log level debug
         Log.d("PseudoRandomNumber", Long.toString(Prandom));
@@ -133,10 +132,10 @@ public class RanGen_Util { //declares the public class 'RanGen_Util'
         // the indicated numbers2 array element.
         for(int i = 1; i < LongNum.length() - 1; i++) {
             if(k < LongNum.length()) {
-                singleDigit = RN.nextBoolean();
+                boolean singleDigit = RN.nextBoolean();
                 Log.d("singleDigit", "singleDigit: " + singleDigit);
                 String numberArray1 = numbers1[k];
-                String numberArray2 = numbers1[k+1];
+                String numberArray2 = numbers1[k +1];
                 Integer numArray1 = Integer.parseInt(numberArray1);
                 Integer numArray2 = Integer.parseInt(numberArray2);
                 Integer nums;

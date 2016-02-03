@@ -1,7 +1,7 @@
 package com.cmurt.encryption_protocol.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.cmurt.encryption_protocol.R;
 

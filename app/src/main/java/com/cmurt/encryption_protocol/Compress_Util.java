@@ -1,8 +1,5 @@
 package com.cmurt.encryption_protocol;
 
-/**
- * Created by cmurtheepic on 1/26/2016.
- */
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -17,7 +14,8 @@ import java.util.zip.GZIPOutputStream;
  *
  * @param <T> the generic type of the serializable object to be compressed
  */
-public class Compress_Util<T extends Serializable> {
+@SuppressWarnings("unused")
+class Compress_Util<T extends Serializable> {
 
     /**
      * Compress object.
@@ -30,14 +28,12 @@ public class Compress_Util<T extends Serializable> {
     public T compressObject(final T objectToCompress, final OutputStream outstream) throws IOException {
 
         final GZIPOutputStream gz = new GZIPOutputStream(outstream);
-        final ObjectOutputStream oos = new ObjectOutputStream(gz);
 
-        try {
+        try (ObjectOutputStream oos = new ObjectOutputStream(gz)) {
             oos.writeObject(objectToCompress);
             oos.flush();
             return objectToCompress;
-        }finally {
-            oos.close();
+        } finally {
             outstream.close();
         }
 
@@ -52,18 +48,17 @@ public class Compress_Util<T extends Serializable> {
      * @throws IOException Signals that an I/O exception has occurred.
      * @throws ClassNotFoundException the class not found exception
      */
-    public T expandObject(final T objectToExpand, final InputStream instream) throws IOException,
+    public T expandObject(@SuppressWarnings("UnusedParameters") final T objectToExpand, final InputStream instream) throws IOException,
             ClassNotFoundException {
         final GZIPInputStream gs = new GZIPInputStream(instream);
-        final ObjectInputStream ois = new ObjectInputStream(gs);
 
-        try {
+        try (ObjectInputStream ois = new ObjectInputStream(gs)) {
             @SuppressWarnings("unchecked")
             T expandedObject = (T) ois.readObject();
             return expandedObject;
         } finally {
             gs.close();
-            ois.close();
+
         }
     }
 

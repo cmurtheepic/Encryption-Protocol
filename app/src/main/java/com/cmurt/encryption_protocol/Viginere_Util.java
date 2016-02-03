@@ -10,32 +10,30 @@ import java.util.List;
 public class Viginere_Util {
 
     // below are the declarations of most of the variables in this java class
-    String OutputStream;
+    private String OutputStream;
     // above are the declarations of most of the variables in this java class
 
-    RanGen_Util RG_U = new RanGen_Util();
+    private final RanGen_Util RG_U = new RanGen_Util();
 
     /**
      * description
      *
-     * IGNORE Viginere is an 2-Dimensional Array IGNORE
-     * Alphabet is an Array consisting of a temporary alphabet to generate
-     * the Viginere Array
-     * populateAlphabetArray populates the Array 'Alphabet' with the Alphabet
-     * IGNORE populateViginereArray populates the Array 'Viginere' with the 26 characters of the Alphabet, IGNORE
-     * IGNORE in a manner that resembles the Viginere Cipher Key IGNORE
+     * Alphabet is an Array consisting of a temporary alphabet and miscellaneous characters
      * Main is the main method for the class
      */
 
-    String[] RGUMAIN = RG_U.Main();
+    private final String[] RGUMAIN = RG_U.Main(); // declares the array 'RGUMAIN'
+                             // and sets it to the value of RG_U.Main()
 
-    String[] Main = RGUMAIN; // declares the array 'Main'
-                             // and sets it to the value
-                             // of RG_U.Main()
+    private final String[] Main = RGUMAIN; // declares the array 'Main'
+                             // and sets it to the value of RGUMAIN
 
-
-    public String[] clean(final String[] v) {
+    @SuppressWarnings("UnusedReturnValue")
+    // cleans any null values from specified array 'v'
+    // and returns the specified array as a new array minus any null values
+    private String[] clean(final String[] v) {
         List<String> list1 = new ArrayList<>(Arrays.asList(v));
+        //noinspection SuspiciousMethodCalls
         list1.removeAll(Collections.singleton(null));
         return list1.toArray(new String[list1.size()]);
     }
@@ -45,10 +43,8 @@ public class Viginere_Util {
     public String[] Main(String InputStream) {
 //
         // Declares the Alphabet array
-        String[] Alphabet = new String[62];
+        String[] Alphabet = new String[82];
 
-        //TODO add the symbols for the rest of the keyboard keys, etc.
-        //TODO add symbols; `, ~, !, @, #, $, %, ^, &, *, (, ), -, _, +, =, ?, \
         Alphabet[0] = "a";
         Alphabet[1] = "b";
         Alphabet[2] = "c";
@@ -110,13 +106,34 @@ public class Viginere_Util {
         Alphabet[58] = "<";
         Alphabet[59] = ">";
         Alphabet[60] = "|";
-        Alphabet[61] = "";
+        Alphabet[61] = "`";
+        Alphabet[62] = "~";
+        Alphabet[63] = "!";
+        Alphabet[64] = "@";
+        Alphabet[65] = "#";
+        Alphabet[66] = "$";
+        Alphabet[67] = "%";
+        Alphabet[68] = "^";
+        Alphabet[69] = "&";
+        Alphabet[70] = "*";
+        Alphabet[71] = "(";
+        Alphabet[72] = ")";
+        Alphabet[73] = "-";
+        Alphabet[74] = "_";
+        Alphabet[75] = "+";
+        Alphabet[76] = "=";
+        Alphabet[77] = "?";
+        Alphabet[78] = "[";
+        Alphabet[79] = "]";
+        Alphabet[80] = "{";
+        Alphabet[81] = "}";
 
         // logs the value(s) of Array 'Alphabet' to the logcat under log level debug
         Log.d("this is Alphabet Array", "Alphabet :-: " + Arrays.toString(Alphabet));
 
         clean(Main); // removes all null values from the array 'main'
 
+        // logs the value of array 'Main' to the logcat under log level debug
         Log.d("value of Main:", "value: " + Arrays.toString(Main));
 
         // determines the amount of "real" values there are
@@ -131,6 +148,7 @@ public class Viginere_Util {
         int[] Key = new int[num]; // declares the array 'Key'
         String[] SKey = new String[num]; // declares the array 'SKey'
 
+        // logs the value of 'num' to the logcat under log level debug
         Log.d("value of num:", "value: " + num);
 
         // converts String array 'Main' to Integer array 'Key'
@@ -164,8 +182,8 @@ public class Viginere_Util {
         int text_length = Text.length; // sets the value of 'text_length' to the length of the array 'Text'
         int key_length = num; // sets the value of 'key_length' to the value of Integer 'num'
 
-        Log.d("text_length", "length: " + text_length);
-        Log.d("key_length", "length: " + key_length);
+        Log.d("text_length", "length: " + text_length); // logs the value of 'text_length' to the logcat under log level debug
+        Log.d("key_length", "length: " + key_length); // logs the value of 'key_length' to the logcat under log level debug
 
         // converts the String letter characters in array 'Text'
         // to numbers that represent the letter,
@@ -188,7 +206,10 @@ public class Viginere_Util {
                 }
 
             }
+        // logs the value of array 'text' to the logcat under log level debug
         Log.d("text:", "text value: " + Arrays.toString(text));
+
+        // logs any exceptions that were detected to the logcat under log level error
         } catch (Exception e) {
             Log.e("T equals A catch:", "catch: " + e);
         }
@@ -196,63 +217,54 @@ public class Viginere_Util {
         // logs the value of array 'key' to the logcat under log level debug
         Log.d("Key:", "value: " + Arrays.toString(Key));
 
-        //TODO fix the problem of encryptor is using up a space in the key to encrypt a 0 value
-        //TODO cont. at the beginning of the array 'text'
-        // encrypts the User's text
+        // encrypts the User's text using the viginere cipher
+        // integer 'li' represents unnecessary increments to integer 'l'
         int li = 0;
-        try {
+        //try {
+            // counts up integer 'l' through the loop for the length of 'text'
             for (int l = 0; l < text_length - 1; l++) {
-                int KL = l%key_length;
+                // removes unnecessary increments from 'l' that are a result of spaces
+                // and miscellaneous characters in the 'InputStream' for use with the key
+                int KL = ((l-li)%key_length);
+                // detects if there are miscellaneous characters or spaces in the numerical array 'test'
                 if(text[l+1] == 52 || text[l+1] == 53 || text[l+1] == 54 || text[l+1] == 55
                         || text[l+1] == 56 || text[l+1] == 57 || text[l+1] == 58 || text[l+1] == 59
-                        || text[l+1] == 60 || text[l+1] == 61) {
+                        || text[l+1] == 60 || text[l+1] == 61 || text[l+1] == 62 || text[l+1] == 63
+                        || text[l+1] == 64 || text[l+1] == 65 || text[l+1] == 66 || text[l+1] == 67
+                        || text[l+1] == 68 || text[l+1] == 69 || text[l+1] == 70 || text[l+1] == 71
+                        || text[l+1] == 72 || text[l+1] == 73 || text[l+1] == 74 || text[l+1] == 75
+                        || text[l+1] == 76 || text[l+1] == 77 || text[l+1] == 78 || text[l+1] == 79
+                        || text[l+1] == 80 || text[l+1] == 81) {
                     encrypted[l] = text[l+1];
                     li++;
                 } else {
+                    // continues to here if no miscellaneous characters or spaces were detected
                     encrypted[l] = ((text[l+1] + Key[KL]) % 26);
                 }
             }
+
+            // logs the values from array 'encrypted' to the logcat under log level debug
             Log.d("encrypted:", "value: " + Arrays.toString(encrypted));
-            // adds all the miscellaneous symbols to the Encrypted array
-            //TODO add the symbols for the rest of the keyboard keys, etc.
+
+            // converts the numerical values from array 'encrypted' to string values
+            // for use in the array 'Encrypted'
             for (int j = 0; j < text_length; j++) {
-//                if(text[j] == 52) {
-//                    Encrypted[j] = " ";
-//                } else if(text[j] == 53) {
-//                    Encrypted[j] = ".";
-//                } else if(text[j] == 54) {
-//                    Encrypted[j] = ",";
-//                } else if(text[j] == 55) {
-//                    Encrypted[j] = "/";
-//                } else if(text[j] == 56) {
-//                    Encrypted[j] = ";";
-//                } else if(text[j] == 57) {
-//                    Encrypted[j] = ":";
-//                } else if(text[j] == 58) {
-//                    Encrypted[j] = "<";
-//                } else if(text[j] == 59) {
-//                    Encrypted[j] = ">";
-//                } else if(text[j] == 60) {
-//                    Encrypted[j] = "|";
-//                } else if(text[j] == 61) {
-//                    Encrypted[j] = "";
-//                } else {
+
                     Encrypted[j] = Alphabet[encrypted[j]];
-//                }
+
             }
-//            // adds the spaces from the users text to the encrypted text
-//            for (int h = 0; h < text_length; h++) {
-//                if(text[h] == 52) {
-//                    Encrypted[h-1] = " ";
-//                }
-//            }
+
+            // converts the values from array 'Encrypted' to string 'OutputStream'
             OutputStream = Arrays.toString(Encrypted);
             // removes all commas from the String
             OutputStream = OutputStream.substring(1, OutputStream.length()-1).replaceAll(",","");
-        } catch (Exception e) {
-            Log.e("Encrypt catch:", "catch: " + e);
-        }
 
+        // logs any exception that were detected to the logcat under log level error
+//        } catch (Exception e) {
+//            Log.e("Encrypt catch:", "catch: " + e);
+//        }
+
+        // converts the values from array 'key' to string 'KeyOutput'
         String KeyOutput = Arrays.toString(SKey);
         // removes all commas from the String
         KeyOutput = KeyOutput.substring(1, KeyOutput.length()-1).replaceAll(",","");
