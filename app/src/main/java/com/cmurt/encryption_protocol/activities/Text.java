@@ -1,20 +1,45 @@
 package com.cmurt.encryption_protocol.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.cmurt.encryption_protocol.R;
+import com.cmurt.encryption_protocol.Viginere_Util;
 
 public class Text extends AppCompatActivity {
+
+    Viginere_Util V_U = new Viginere_Util();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
+    }
+
+    public void Viginere(View view) {
+        String Text;
         EditText ET;
 
         ET = (EditText)findViewById(R.id.editText);
+        Text = ET.getText().toString();
+        Log.d("text class:", "Text value: " + Text);
+
+        String[] strings = new String[3]; // declares the array 'strings'
+
+        strings = (V_U.Main(Text));
+
+        V_U.Main(Text);
+
+        Intent T_U = new Intent(this, Text_Output.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("Text", Text);
+        bundle.putString("Key", strings[2]);
+        bundle.putString("OutputStream", strings[1]);
+        T_U.putExtras(bundle);
+        startActivity(T_U);
     }
 }

@@ -1,28 +1,34 @@
 package com.cmurt.encryption_protocol;
 
 // imports dependencies
+
 import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Random;
 
-public class TimeAndDateUtil { //declares the public class 'TimeAndDateUtil'
+public class RanGen_Util { //declares the public class 'RanGen_Util'
 
     // below are the declarations for most of the variables in this java class
     private long Prandom;
 
-    String ln;
     String LN;
 
     int k = 1;
+    int g = 1;
 
     boolean wt = true;
     boolean done = false;
+    boolean singleDigit;
+
+    Random RN = new Random();
     // above are the declarations for most of the variables in this java class
 
     /**
-     * @return the Date and Time,
+     * returns the Date and Time,
      * as well as the pseudo-random number generated.
      * as a String
      */
@@ -49,7 +55,7 @@ public class TimeAndDateUtil { //declares the public class 'TimeAndDateUtil'
             // then logs the value of Prandom
             Prandom = (calendar.get(Calendar.MILLISECOND) * (calendar.get(Calendar.YEAR) *
                     (calendar.get(Calendar.MILLISECOND) + 1)) * calendar.get(Calendar.YEAR)) *
-                    (calendar.get(Calendar.HOUR) * (calendar.get(Calendar.MINUTE) + 1) *
+                    ((calendar.get(Calendar.HOUR) + 1) * (calendar.get(Calendar.MINUTE) + 1) *
                             (calendar.get(Calendar.SECOND) + 1));
             Log.d("PseudoRandomNumber", Long.toString(Prandom)); // logs the value of Prandom to the logcat
                                                                  // under log level debug
@@ -72,16 +78,20 @@ public class TimeAndDateUtil { //declares the public class 'TimeAndDateUtil'
 
         // sets the Boolean 'done' to true, then calls back to the Main method
         done = true;
+        Log.d("boolean done:", "value of bool 'done': " + done);
         Main();
     }
 
     // Main method of the class
-    public String Main() {
+    public String[] Main() {
 
         // checks to see if the calendar method is done with its intended task
         if(!done) {
             calendar();
         }
+
+        // resets the value of Integer 'k' back to 1
+        k = 1;
 
         // logs the value of Long Prandom to logcat under log level debug
         Log.d("PseudoRandomNumber", Long.toString(Prandom));
@@ -89,15 +99,23 @@ public class TimeAndDateUtil { //declares the public class 'TimeAndDateUtil'
         // converts the value of Long Prandom into a String
         String LongNum = Long.toString(Prandom);
 
+        Log.d("LongNum length:", "LongNum: " + LongNum.length());
+
         // declares the array(s) 'numbers1' & 'numbers2' and makes the array
         // the size of the pseudo-randomly generated number
         // by taking the number of digit places in the integer
         String[] numbers1 = new String[LongNum.length()+1];
-        String[] numbers2 = new String[LongNum.length()+1];
+        final String[] numbers2 = new String[LongNum.length()];
+
+//        if((LongNum.length())%2 == 0) {
+//            numbers2 = new String[LongNum.length() / 2];
+//        } else {
+//            numbers2 = new String[(LongNum.length() + 1) / 2];
+//        }
 
         // gets the size of array(s) 'numbers1' & 'numbers2' and stores it into a integer
-        int numbers1Size = numbers1.length;
-        int numbers2Size = numbers2.length;
+        final int numbers1Size = numbers1.length;
+        final int numbers2Size = numbers2.length;
 
         // logs the value of Integer(s) 'numbers1Size' & 'numbers2Size'
         // to the logcat under log level debug
@@ -105,25 +123,40 @@ public class TimeAndDateUtil { //declares the public class 'TimeAndDateUtil'
         Log.d("numbers2Size", "Size: " + numbers2Size);
 
         // splits the value of ln into single digits then stores it in the array 'numbers1'
-        numbers1 = ln.split("");
-        Log.d("Long Num", "Long Num: " + ln.split(""));
+        numbers1 = LN.split("");
 
         Log.d("numbers1 array", "array: " + Arrays.toString(numbers1));
 
         // moves the data values in the numbers1 array into numbers2 array
         // by taking a element and adding the value of the very next element
         // on to the end of the first element and then storing the value into
-        // the indicated numbers2 array element
+        // the indicated numbers2 array element.
         for(int i = 1; i < LongNum.length() - 1; i++) {
             if(k < LongNum.length()) {
-                numbers2[i - 1] = numbers1[k] + numbers1[k + 1];
-                k = k + 2;
-                Log.d("Size of 'k'", "K: " + k);
+                singleDigit = RN.nextBoolean();
+                Log.d("singleDigit", "singleDigit: " + singleDigit);
+                String numberArray1 = numbers1[k];
+                String numberArray2 = numbers1[k+1];
+                Integer numArray1 = Integer.parseInt(numberArray1);
+                Integer numArray2 = Integer.parseInt(numberArray2);
+                Integer nums;
+                if(!singleDigit) {
+                    nums = ((10 * numArray1) + numArray2)%26;
+                    numbers2[i-1] = Integer.toString(nums);
+                    k = k + 2;
+                    Log.d("Size of 'k' 1", "K: " + k);
+                } else {
+                    numbers2[i-1] = numbers1[k];
+                    k = k + 1;
+                    Log.d("Size of 'k' 2", "K: " + k);
+                }
             }
         }
 
         Log.d("numbers2 array", "array: " + Arrays.toString(numbers2));
+        g = g+1;
+        Log.d("value of g: ", String.valueOf(g));
 
-        return Long.toString(Prandom);
+        return numbers2;
     }
 }

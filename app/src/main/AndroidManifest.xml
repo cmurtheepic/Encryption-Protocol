@@ -19,6 +19,7 @@
         <activity android:name=".activities.UserSelectEncodeType" />
         <activity android:name=".activities.Text" />
         <activity android:name=".activities.File"></activity>
+        <activity android:name=".activities.Text_Output"></activity>
     </application>
 
 </manifest>

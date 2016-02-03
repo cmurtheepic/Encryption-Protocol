@@ -1,22 +1,14 @@
 package com.cmurt.encryption_protocol;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import com.cmurt.encryption_protocol.activities.UserSelectEncodeType;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
 
-    Viginere_Util V_U = new Viginere_Util();
-    TimeAndDateUtil TADU = new TimeAndDateUtil();
+    RanGen_Util TADU = new RanGen_Util();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TADU.Main();
-        V_U.Main();
         USET();
 
     }

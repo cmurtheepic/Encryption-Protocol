@@ -23,18 +23,18 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="220sp"
+        android:layout_height="200sp"
         android:text="Text"
         android:id="@+id/TextButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/text1"
-        android:textSize="120sp"
+        android:textSize="100sp"
         android:onClick="Text" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="220sp"
+        android:layout_height="200sp"
         android:text="File"
         android:id="@+id/FileButton"
         android:layout_alignParentBottom="true"
