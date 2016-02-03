@@ -27,7 +27,7 @@ public class Text extends AppCompatActivity {
 
         strings = (V_U.Main(Text));
 
-        V_U.Main(Text);
+        //V_U.Main(Text);
 
         Intent T_U = new Intent(this, Text_Output.class);
         Bundle bundle = new Bundle();

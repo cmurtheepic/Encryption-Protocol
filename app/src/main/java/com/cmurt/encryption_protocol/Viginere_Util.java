@@ -10,10 +10,18 @@ import java.util.List;
 public class Viginere_Util {
 
     // below are the declarations of most of the variables in this java class
-    private String OutputStream;
-    // above are the declarations of most of the variables in this java class
+    private String outputStream = "";
 
-    private final RanGen_Util RG_U = new RanGen_Util();
+    private int loop = 0;
+
+    private final RanGen_Util RG_U = new RanGen_Util(); // declares an instance of RanGen_Util called RG_U
+
+    private final String[] RGUMAIN = RG_U.Main(); // declares the array 'RGUMAIN'
+                                                  // and sets it to the value of RG_U.Main()
+
+    private final String[] Main = RGUMAIN; // declares the array 'Main'
+                                           // and sets it to the value of RGUMAIN
+    // above are the declarations of most of the variables in this java class
 
     /**
      * description
@@ -21,12 +29,6 @@ public class Viginere_Util {
      * Alphabet is an Array consisting of a temporary alphabet and miscellaneous characters
      * Main is the main method for the class
      */
-
-    private final String[] RGUMAIN = RG_U.Main(); // declares the array 'RGUMAIN'
-                             // and sets it to the value of RG_U.Main()
-
-    private final String[] Main = RGUMAIN; // declares the array 'Main'
-                             // and sets it to the value of RGUMAIN
 
     @SuppressWarnings("UnusedReturnValue")
     // cleans any null values from specified array 'v'
@@ -129,12 +131,12 @@ public class Viginere_Util {
         Alphabet[81] = "}";
 
         // logs the value(s) of Array 'Alphabet' to the logcat under log level debug
-        Log.d("this is Alphabet Array", "Alphabet :-: " + Arrays.toString(Alphabet));
+        Log.d("Viginere_Util", "Alphabet :-: " + Arrays.toString(Alphabet));
 
         clean(Main); // removes all null values from the array 'main'
 
         // logs the value of array 'Main' to the logcat under log level debug
-        Log.d("value of Main:", "value: " + Arrays.toString(Main));
+        Log.d("Viginere_Util", "value of Main: " + Arrays.toString(Main));
 
         // determines the amount of "real" values there are
         // in the numbers array
@@ -149,7 +151,7 @@ public class Viginere_Util {
         String[] SKey = new String[num]; // declares the array 'SKey'
 
         // logs the value of 'num' to the logcat under log level debug
-        Log.d("value of num:", "value: " + num);
+        Log.d("Viginere_Util", "value of num: " + num);
 
         // converts String array 'Main' to Integer array 'Key'
         // as well as it converts Integer array 'Key' to String array 'SKey'
@@ -158,7 +160,7 @@ public class Viginere_Util {
                 Key[y] = Integer.parseInt(Main[y]);
                 SKey[y] = Alphabet[Key[y]];
             } catch (NumberFormatException nfe) {
-                Log.e("Key catch:", "catch: " + nfe);
+                Log.e("Viginere_Util", "Key catch: " + nfe + " :-: " + Thread.currentThread().getStackTrace()[2].getLineNumber());
             }
         }
 
@@ -174,16 +176,16 @@ public class Viginere_Util {
         Text = InputStream.split("");
 
         // logs the values in the array 'Text' to the logcat under log level debug
-        Log.d("Text array:", "Values: " + Arrays.toString(Text));
+        Log.d("Viginere_Util", "Text array Values: " + Arrays.toString(Text));
 
         // logs the length of array 'Text' to the logcat under log level debug
-        Log.d("Text Length:", "Length" + Text.length);
+        Log.d("Viginere_Util", "Text_Length: " + Text.length);
 
         int text_length = Text.length; // sets the value of 'text_length' to the length of the array 'Text'
         int key_length = num; // sets the value of 'key_length' to the value of Integer 'num'
 
-        Log.d("text_length", "length: " + text_length); // logs the value of 'text_length' to the logcat under log level debug
-        Log.d("key_length", "length: " + key_length); // logs the value of 'key_length' to the logcat under log level debug
+        Log.d("Viginere_Util", "text_length: " + text_length); // logs the value of 'text_length' to the logcat under log level debug
+        Log.d("Viginere_Util", "key_length: " + key_length); // logs the value of 'key_length' to the logcat under log level debug
 
         // converts the String letter characters in array 'Text'
         // to numbers that represent the letter,
@@ -191,36 +193,36 @@ public class Viginere_Util {
         try {
             for (int t = 1; t < Text.length; t++) {
                 int u = 0;
-                Log.d("Text t:", "Text t value: " + Text[t]);
+                Log.d("Viginere_Util", "Text t value: " + Text[t]);
                 while(!Text[t].equals(Alphabet[u])) {
-                    if(!Text[t].equals(Alphabet[u]) && u < 62) {
+                    if(!Text[t].equals(Alphabet[u]) && u < 82) {
                         u++;
                     } else {
-                        Log.e("Integer U:", "THE VALUE OF U EXCEEDED 61");
+                        Log.e("Viginere_Util", "THE VALUE OF U EXCEEDED 82 :-: " + Thread.currentThread().getStackTrace()[2].getLineNumber());
                         break;
                     }
                 }
-                Log.d("while statement:", "while loop finished");
+                Log.d("Viginere_Util", "while loop finished");
                 if (Text[t].equals(Alphabet[u])) {
                     text[t] = u;
                 }
 
             }
         // logs the value of array 'text' to the logcat under log level debug
-        Log.d("text:", "text value: " + Arrays.toString(text));
+        Log.d("Viginere_Util", "text value: " + Arrays.toString(text));
 
         // logs any exceptions that were detected to the logcat under log level error
         } catch (Exception e) {
-            Log.e("T equals A catch:", "catch: " + e);
+            Log.e("Viginere_Util", "T equals A catch: " + e);
         }
 
         // logs the value of array 'key' to the logcat under log level debug
-        Log.d("Key:", "value: " + Arrays.toString(Key));
+        Log.d("Viginere_Util", "Key value: " + Arrays.toString(Key));
 
         // encrypts the User's text using the viginere cipher
         // integer 'li' represents unnecessary increments to integer 'l'
         int li = 0;
-        //try {
+        try {
             // counts up integer 'l' through the loop for the length of 'text'
             for (int l = 0; l < text_length - 1; l++) {
                 // removes unnecessary increments from 'l' that are a result of spaces
@@ -244,7 +246,10 @@ public class Viginere_Util {
             }
 
             // logs the values from array 'encrypted' to the logcat under log level debug
-            Log.d("encrypted:", "value: " + Arrays.toString(encrypted));
+            Log.d("Viginere_Util", "encrypted value: " + Arrays.toString(encrypted));
+
+            // logs the length of array 'Encrypted' to the logcat under log level debug
+            Log.d("Viginere_Util", "Encrypted value: " + Encrypted.length);
 
             // converts the numerical values from array 'encrypted' to string values
             // for use in the array 'Encrypted'
@@ -255,14 +260,14 @@ public class Viginere_Util {
             }
 
             // converts the values from array 'Encrypted' to string 'OutputStream'
-            OutputStream = Arrays.toString(Encrypted);
+        String outputStream = Arrays.toString(Encrypted);
             // removes all commas from the String
-            OutputStream = OutputStream.substring(1, OutputStream.length()-1).replaceAll(",","");
+            outputStream = outputStream.substring(1, outputStream.length() - 1).replaceAll(",","");
 
         // logs any exception that were detected to the logcat under log level error
-//        } catch (Exception e) {
-//            Log.e("Encrypt catch:", "catch: " + e);
-//        }
+        } catch (Exception e) {
+            Log.e("Viginere_Util", "Encryption catch: " + e);
+        }
 
         // converts the values from array 'key' to string 'KeyOutput'
         String KeyOutput = Arrays.toString(SKey);
@@ -270,15 +275,20 @@ public class Viginere_Util {
         KeyOutput = KeyOutput.substring(1, KeyOutput.length()-1).replaceAll(",","");
 
         // logs the value of String array 'SKey' to the logcat under log level debug
-        Log.d("SKey:", "value: " + KeyOutput);
+        Log.d("Viginere_Util", "SKey value: " + KeyOutput);
 
         // logs the value of String 'OutputStream' to the logcat under log level debug
-        Log.d("OutputStream:", "Stream: " + OutputStream);
+        Log.d("Viginere_Util", "OutputStream: " + outputStream);
 
         String[] Ret = new String[3]; // declares the array 'Return'
 
-        Ret[1] = OutputStream; // sets the array element 1 to the value of OutputStream
+        Ret[1] = outputStream; // sets the array element 1 to the value of OutputStream
         Ret[2] = KeyOutput; // sets the array element 2 to the value of KeyOutput
+
+        loop = loop + 1;
+
+        //logs the value of integer 'loop' to the logcat under log level debug
+        Log.d("Viginere_Util", "loop value: " + loop);
 
         return Ret; // returns the encrypted String
     }

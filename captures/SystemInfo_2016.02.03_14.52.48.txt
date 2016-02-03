@@ -1,0 +1,33 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        7ff2136 com.cmurt.encryption_protocol/.MainActivity
+
+Key Set Manager:
+  [com.cmurt.encryption_protocol]
+      Signing KeySets: 6
+
+Packages:
+  Package [com.cmurt.encryption_protocol] (ac66733):
+    userId=10057
+    pkg=Package{983c837 com.cmurt.encryption_protocol}
+    codePath=/data/app/com.cmurt.encryption_protocol-1
+    resourcePath=/data/app/com.cmurt.encryption_protocol-1
+    legacyNativeLibraryDir=/data/app/com.cmurt.encryption_protocol-1/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=1 targetSdk=23
+    versionName=1.0
+    splits=[base]
+    applicationInfo=ApplicationInfo{5a731a4 com.cmurt.encryption_protocol}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/user/0/com.cmurt.encryption_protocol
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2016-02-03 14:51:04
+    firstInstallTime=2016-02-01 10:49:56
+    lastUpdateTime=2016-02-03 14:51:10
+    signatures=PackageSignatures{cfb92ee [2284b0d]}
+    installPermissionsFixed=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true hidden=false stopped=false notLaunched=false enabled=0
+      runtime permissions:
