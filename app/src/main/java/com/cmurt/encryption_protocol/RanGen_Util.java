@@ -14,11 +14,11 @@ import java.util.Random;
 class RanGen_Util { //declares the public class 'RanGen_Util'
 
     // below are the declarations for most of the variables in this java class
-    private long Prandom;
+    private long Prandom; // declares a long with the name of 'Prandom'
 
-    private String LN;
+    private String LN; // declares a string with the name of 'LN'
 
-    private int g = 0;
+    private int g = 0; // declares an integer with the name of 'g' and the value of '0'
 
     private boolean wt = true;
     //private boolean done = false;
@@ -69,21 +69,11 @@ class RanGen_Util { //declares the public class 'RanGen_Util'
                 Log.d("RanGen_Util", "Prandom = false");
             }
         }
-
-        // sets the Boolean 'done' to true, then calls back to the Main method
-        //done = true;
-        //noinspection ConstantConditions
-        //Log.d("boolean done:", "value of bool 'done': " + done);
     }
 
     // Main method of the class
     @NonNull
     public String[] Main() {
-
-//        // checks to see if the calendar method is done with its intended task
-//        if(!done) {
-//            calendar();
-//        }
 
         // calls to the method calendar
         calendar();
@@ -123,6 +113,7 @@ class RanGen_Util { //declares the public class 'RanGen_Util'
         // splits the value of ln into single digits then stores it in the array 'numbers1'
         numbers1 = LN.split("");
 
+        // logs the value of array 'numbers'1 to the logcat under log level debug
         Log.d("RanGen_Util", "numbers1 array: " + Arrays.toString(numbers1));
 
         // moves the data values in the numbers1 array into numbers2 array
@@ -151,10 +142,14 @@ class RanGen_Util { //declares the public class 'RanGen_Util'
             }
         }
 
+        // logs the value of array 'numbers2' to the logcat under log level debug
         Log.d("RanGen_Util", "numbers2 array: " + Arrays.toString(numbers2));
-        g = g+1;
+
+        g = g+1; // set the value of integer 'g' to the value of integer 'g' + 1
+
+        // logs the value of integer 'g' as a string to the logcat under log level debug
         Log.d("RanGen_Util", "value of g: " + String.valueOf(g));
 
-        return numbers2;
+        return numbers2; // returns the integer array 'numbers2'
     }
 }

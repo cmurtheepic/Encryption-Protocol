@@ -1,5 +1,7 @@
 package com.cmurt.encryption_protocol;
 
+// Dependencies
+
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -10,9 +12,9 @@ import java.util.List;
 public class Viginere_Util {
 
     // below are the declarations of most of the variables in this java class
-    private String outputStream = "";
+    private String outputStream = ""; // declares a string named 'outputStream' with a value of empty
 
-    private int loop = 0;
+    private int loop = 0; // declares an integer named 'loop' with a value of '0'
 
     private final RanGen_Util RG_U = new RanGen_Util(); // declares an instance of RanGen_Util called RG_U
 
@@ -193,16 +195,33 @@ public class Viginere_Util {
         try {
             for (int t = 1; t < Text.length; t++) {
                 int u = 0;
+                // logs the value of array 'Text' element at integer 't'
+                // to the logcat under log level debug
                 Log.d("Viginere_Util", "Text t value: " + Text[t]);
+                // loops as long as array 'Text' element at integer 't' does not equal
+                // array 'Alphabet' element at integer 'u', as well as determines if
+                // the loop progresses past the length of the array 'Alphabet'
+                // if the loop progresses past the length of the array
+                // will log error to log cat
+                //TODO figure out how this function works, and what it's purpose is
                 while(!Text[t].equals(Alphabet[u])) {
                     if(!Text[t].equals(Alphabet[u]) && u < 82) {
                         u++;
                     } else {
-                        Log.e("Viginere_Util", "THE VALUE OF U EXCEEDED 82 :-: " + Thread.currentThread().getStackTrace()[2].getLineNumber());
+                        // will log to the logcat "THE VALUE OF 'U' EXCEEDED 82" with the line number
+                        // if somehow the if statement as well as the while loop fails
+                        Log.e("Viginere_Util", "THE VALUE OF U EXCEEDED 82 :-: " +
+                                Thread.currentThread().getStackTrace()[2].getLineNumber());
                         break;
                     }
                 }
+                // logs the value 'while loop finished' to the logcat under log level debug
                 Log.d("Viginere_Util", "while loop finished");
+                // determines if the 'Text element' at integer 't'
+                // is equal to the 'Alphabet element' at integer 'u'
+                // if this statement is true, will set the array
+                // 'text' element at integer 't' to the value of
+                // integer 'u'
                 if (Text[t].equals(Alphabet[u])) {
                     text[t] = u;
                 }
@@ -285,7 +304,7 @@ public class Viginere_Util {
         Ret[1] = outputStream; // sets the array element 1 to the value of OutputStream
         Ret[2] = KeyOutput; // sets the array element 2 to the value of KeyOutput
 
-        loop = loop + 1;
+        loop = loop + 1; // sets the value of 'loop' to the value of 'loop' + 1
 
         //logs the value of integer 'loop' to the logcat under log level debug
         Log.d("Viginere_Util", "loop value: " + loop);
